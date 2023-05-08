@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
-import squirtle from '../../public/squirtle.png';
 import loadingChimecho from '../../public/loadingChimecho.gif';
-// import cool from '../../public/cool.jpeg'
 
 function PokemonCard({ pokemon }) {
   const defaultPokeData = {
@@ -28,7 +26,7 @@ function PokemonCard({ pokemon }) {
     getPokemon();
   }, [url]);
 
-  if (true) {
+  if (pokeData.loading) {
     return (
       <Card className='mt-4'>
         <Card.Img
