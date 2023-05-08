@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Navigation } from './components/Navigation';
 import { PokemonCard } from './components/PokemonCard';
+import { Search } from './components/Search.js'
 import Container from 'react-bootstrap/esm/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -34,6 +35,7 @@ function App() {
   return (
     <div data-testid="app">
       <Navigation />
+      <Search />
 
       <Container>
         <Row xs={2} md={6} lg={10} >

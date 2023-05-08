@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {Card} from 'react-bootstrap';
+import squirtle from '../../public/squirtle.png'
 // import loadingChimecho from '../../public/loadingChimecho.gif';
 // import cool from '../../public/cool.jpeg'
 
@@ -23,7 +24,7 @@ function PokemonCard({pokemon, getPokemon}) {
   if(pokeData.loading) {
     return (
       <Card className='mt-4'>
-      <Card.Img className="d-flex justify-content-center" variant="top" src={loadingChimecho}/>
+      <Card.Img className="d-flex justify-content-center" variant="top" src={squirtle}/>
       <Card.Body>
         <Card.Title className='text-center'>loading pokemon..</Card.Title>
           <Card.Text as="div">
@@ -41,6 +42,7 @@ function PokemonCard({pokemon, getPokemon}) {
           <Card.Title className='text-center'>{name}</Card.Title>
             <Card.Text as="div">
                 {pokeData.data.abilities.map((ability,index) => {
+                  console.log(ability.ability.name)
                   return <ul key={index}>{ability.ability.name}</ul>
               })}
             </Card.Text>
