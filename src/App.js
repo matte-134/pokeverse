@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Navigation } from './components/Navigation';
 import { PokemonCard } from './components/PokemonCard';
 import Container from 'react-bootstrap/esm/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { useEffect } from 'react';
 
 const LIMIT = 150;
@@ -33,11 +35,16 @@ function App() {
     <div data-testid="app">
       <Navigation />
 
-      <h1>Cards should appear here</h1>
       <Container>
+        <Row xs={2} md={6} lg={10} >
         {data.map((pokemon,indx) => {
-          return (<PokemonCard key={indx} pokemon={pokemon} />);
+          return (
+          <Col key={indx}>
+          <PokemonCard key={indx} pokemon={pokemon} />
+          </Col>
+          )
         })}
+        </Row>
       </Container>
     </div>
   );

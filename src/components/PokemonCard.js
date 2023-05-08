@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {Card} from 'react-bootstrap';
+// import loadingChimecho from '../../public/loadingChimecho.gif';
+// import cool from '../../public/cool.jpeg'
 
 function PokemonCard({pokemon, getPokemon}) {
   const defaultPokeData = {data:{sprites:{front_default:""}},loading: true};
@@ -10,7 +12,7 @@ function PokemonCard({pokemon, getPokemon}) {
     try{
       const response = await fetch(url);
       const data = await response.json();
-      setPokeData({data:data,loading: false});
+      setPokeData({data:data,loading:false});
     }catch(error){
       throw new Error(error);
     }
@@ -19,13 +21,29 @@ function PokemonCard({pokemon, getPokemon}) {
   useEffect(() => {getPokemon()},[]);
 
   if(pokeData.loading) {
-    return <><p>Loading...</p></>
-  }else{
     return (
-      <Card>
-        <Card.Img variant="top" src={pokeData.data.sprites.front_default}></Card.Img>
+      <Card className='mt-4'>
+      <Card.Img className="d-flex justify-content-center" variant="top" src={loadingChimecho}/>
+      <Card.Body>
+        <Card.Title className='text-center'>loading pokemon..</Card.Title>
+          <Card.Text as="div">
+              <ul>Thinking</ul>
+              <ul>Fetch</ul>
+          </Card.Text>
+      </Card.Body>
+    </Card>
+    );
+   } else{
+    return (
+      <Card className='mt-4'>
+        <Card.Img className="d-flex justify-content-center" variant="top" src={pokeData.data.sprites.front_default}></Card.Img>
         <Card.Body>
-        <Card.Title>{name}</Card.Title>
+          <Card.Title className='text-center'>{name}</Card.Title>
+            <Card.Text as="div">
+                {pokeData.data.abilities.map((ability,index) => {
+                  return <ul key={index}>{ability.ability.name}</ul>
+              })}
+            </Card.Text>
         </Card.Body>
       </Card>
     );
