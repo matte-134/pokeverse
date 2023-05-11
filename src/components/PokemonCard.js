@@ -1,28 +1,23 @@
-import React, { useState, useEffect } from 'react';
-function PokemonCard({ name, url }) {
-  const [pokemonData, setPokemonData] = useState(null);
-  useEffect(() => {
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        const { sprites, abilities } = data;
-        setPokemonData({ sprites, abilities });
-      })
-      .catch(error => console.log(error));
-  }, [url]);
-  if (!pokemonData) {
-    return <div>Loading...</div>;
-  }
+import React from ‘react’;
+import { NavLink } from ‘react-router-dom’;
+import Navbar from ‘react-bootstrap/Navbar’;
+import Nav from ‘react-bootstrap/Nav’;
+import Container from ‘react-bootstrap/Container’;
+import Image from ‘react-bootstrap/Image’;
+import squirtle from ‘../../public/squirtle.png’;
+function Navigation() {
   return (
-    <div>
-      <h3>{name}</h3>
-      <img src={pokemonData.sprites.front_default} alt={name} />
-      <ul>
-        {pokemonData.abilities.map(ability => (
-          <li key={ability.slot}>{ability.ability.name}</li>
-        ))}
-      </ul>
-    </div>
+    <Navbar sticky=‘top’ bg=‘dark’ variant=‘dark’ className=“mb-4”>
+      <Container>
+        <Navbar.Brand>
+          <Image src={squirtle} width=“30" className=“me-2” />
+          Pokeverse
+        </Navbar.Brand>
+        <Nav className=‘me-auto’>
+          <Nav.Link as={NavLink} to=“/”>All Pokemon</Nav.Link>
+        </Nav>
+      </Container>
+    </Navbar>
   );
 }
-export { PokemonCard };
+export { Navigation };
