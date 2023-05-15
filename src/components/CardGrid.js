@@ -37,8 +37,8 @@ export function CardGrid ({data}) {
       }
 return (
 <>
-    <Search query={query} handleTyping={handleTyping} />
     <Container>
+        <Search query={query} handleTyping={handleTyping} />
         <Row xs={2} md={6} lg={10}>
         {
             filtered.map((pokemon, indx) => {
