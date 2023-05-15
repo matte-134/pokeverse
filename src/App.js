@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { Navigation } from './components/Navigation';
-import { PokemonCard } from './components/PokemonCard';
+import { CardGrid } from './components/CardGrid';
 import { Search } from './components/Search';
-import Container from 'react-bootstrap/esm/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import { useEffect } from 'react';
 
 const LIMIT = 150;
@@ -26,24 +23,14 @@ function App() {
   }
 
   useEffect(() => {
-    fetchPokemon();
+    fetchPokemon()
   }, []);
-
+  
   return (
     <div data-testid='app'>
       <Navigation />
-      <Search />
-      <Container>
-        <Row xs={2} md={6} lg={10}>
-          {data.map((pokemon, indx) => {
-            return (
-              <Col key={indx}>
-                <PokemonCard key={indx} pokemon={pokemon} />
-              </Col>
-            );
-          })}
-        </Row>
-      </Container>
+      {/* <Search query={query} handleTyping={handleTyping} /> */}
+      <CardGrid data={data} setData={setData} />
     </div>
   );
 }
