@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import loadingChimecho from '../../public/loadingChimecho.gif';
+import { Link } from 'react-router-dom';
 
 function PokemonCard({ pokemon }) {
   const defaultPokeData = {
@@ -54,12 +55,18 @@ function PokemonCard({ pokemon }) {
         src={pokeData.data.sprites.front_default}
       ></Card.Img>
       <Card.Body>
-        <Card.Title className='text-center'>{name}</Card.Title>
+        <Card.Title className='text-center'>
+          <Link to={`/${name}`}>
+            {name}
+          </Link>
+        </Card.Title>
         <Card.Text as='div'>
         <h6>Abilities</h6>
           <ul>
             {pokeData.data.abilities.map((ability, index) => {
-              return <li key={index}>{ability.ability.name}</li>;
+              return <li key={index}>
+                  {ability.ability.name}
+                </li>;
             })}
           </ul>
         </Card.Text>
