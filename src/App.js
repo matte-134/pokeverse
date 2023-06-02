@@ -1,13 +1,30 @@
-import React, { useState } from 'react';
-import { Navigation } from './components/Navigation';
-import { CardGrid } from './components/CardGrid';
-import { Search } from './components/Search';
-import { useEffect } from 'react';
+import React from 'react';
+import {createBrowserRouter,RouterProvider} from 'react-router-dom';
 
-const LIMIT = 150;
-const pokeApi = `https://pokeapi.co/api/v2/pokemon/?limit=${LIMIT}`;
+import {Layout} from './routes/Layout';
+import {Home} from './routes/Home'
+import {PokeDetails} from './routes/PokeDetails'
+
 
 function App() {
+  const router = createBrowserRouter([{
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <Home/>
+      },
+      {
+        path: "/:name",
+        element: <PokeDetails/>
+      }
+    ],
+  }]);
+
+  return(
+    <RouterProvider router={router} />
+  );
 }
 
 export { App };

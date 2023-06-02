@@ -4,25 +4,23 @@ import loadingChimecho from '../../public/loadingChimecho.gif';
 
 function PokemonCard({ pokemon }) {
   const defaultPokeData = {
-    // eslint-disable-next-line camelcase
     data: { sprites: { front_default: '' } },
     loading: true,
   };
   const [pokeData, setPokeData] = useState(defaultPokeData);
   const { name, url } = pokemon;
 
-  useEffect(() => {
-    async function getPokemon() {
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        setPokeData({ data: data, loading: false });
-      } catch (error) {
-        // You don't need to create a new error here as it would be redundant
-        // If we hit the catch block, an error has already been thrown, and you just need to handle it
-        console.error(error.message);
-      }
+  async function getPokemon() {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setPokeData({ data: data, loading: false });
+    } catch (error) {
+      console.error(error.message);
     }
+  }
+
+  useEffect(() => {
     getPokemon();
   }, [url]);
 

@@ -1,6 +1,10 @@
 import React, {useState,useEffect} from "react";
+import { CardGrid } from "../components/CardGrid";
 
-function Home(){
+const LIMIT = 150;
+const pokeApi = `https://pokeapi.co/api/v2/pokemon/?limit=${LIMIT}`;
+
+export function Home(){
     const [data, setData] = useState([]);
 
     async function fetchPokemon() {
